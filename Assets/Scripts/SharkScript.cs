@@ -39,7 +39,7 @@ public class SharkScript : MonoBehaviour
         {
             StartCoroutine("Shoot");
         }
-        if (transform.position.x >= 30){
+        if (transform.position.x >= 30 || hp <= 0){
             Destroy(gameObject);
         }
     }

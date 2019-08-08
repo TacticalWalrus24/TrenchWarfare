@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7227671387124396555}
+  - component: {fileID: 151716988740265419}
   m_Layer: 0
   m_Name: Spawn point
   m_TagString: Untagged
@@ -30,6 +31,18 @@ Transform:
   m_Father: {fileID: 252480335383945952}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &151716988740265419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151716988740265418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86f63ca55fa19240b2e930ee58c1923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &252480333309411421
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +480,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088089194134246560, guid: c180f25e10016684ab808338f12a809f,
+        type: 3}
+      propertyPath: m_Drag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088089194134246560, guid: c180f25e10016684ab808338f12a809f,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9088089193872612309, guid: c180f25e10016684ab808338f12a809f,
         type: 3}

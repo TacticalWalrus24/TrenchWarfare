@@ -1226,6 +1226,7 @@ GameObject:
   - component: {fileID: 2935680586362471212}
   - component: {fileID: 7636474711845670822}
   - component: {fileID: 9058335676354619895}
+  - component: {fileID: 7096878267747200756}
   m_Layer: 0
   m_Name: EnemySub
   m_TagString: Untagged
@@ -1241,7 +1242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2935680586362471215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.694818, y: 6.728336, z: -14.573761}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2935680584304443795}
@@ -1279,6 +1280,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 5, z: 6}
   m_Center: {x: -1.5, y: -0.5, z: 0}
+--- !u!114 &7096878267747200756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935680586362471215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a358ec38c808b478e4e07e1b53f6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 4921905308989570217, guid: 6ffff0a49cf994d45b61db8a05f2c486,
+    type: 3}
+  gunLeft: {fileID: 2935680584304443795}
+  gunRight: {fileID: 2935680584767222073}
+  firerate: 0.75
+  hp: 100
+  player: {fileID: 0}
 --- !u!1 &2935680586398598128
 GameObject:
   m_ObjectHideFlags: 0

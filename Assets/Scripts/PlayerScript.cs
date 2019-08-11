@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
         if (hori > 0 || hori < 0)
         {
             Movement(hori, 'z');
+            //playerBody.transform.Rotate()
         }
 
         if (Input.GetKey(KeyCode.Space) && canShoot)

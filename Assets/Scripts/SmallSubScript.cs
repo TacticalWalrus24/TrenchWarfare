@@ -5,19 +5,24 @@ using UnityEngine;
 public class SmallSubScript : MonoBehaviour
 {
     public GameObject projectile;
+    public GameObject marker;
     public Transform gunLeft;
     public Transform gunRight;
+    public Transform markerPoint;
     public float firerate = 0.75f;
     public float hp = 100;
+    public int value = 0;
 
     public GameObject player;
+    private GameObject spawnTo;
     private bool canShoot = true;
+    private bool isMarked = false;
 
     private void FixedUpdate()
     {
         if (player != null)
         {
-            GetComponent<Rigidbody>().velocity = new Vector3(0, transform.position.y - player.transform.position.y, transform.position.z - player.transform.position.z);
+            GetComponent<Rigidbody>().velocity = new Vector3(0, transform.position.y - (player.transform.position.y - 0.5f), transform.position.z - player.transform.position.z) * -1;
         }
     }
 
@@ -34,6 +39,22 @@ public class SmallSubScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (transform.position.z >= player.transform.position.z - 2 && transform.position.z <= player.transform.position.z + 2
+                && transform.position.y >= player.transform.position.y - 2 && transform.position.y <= player.transform.position.y + 2)
+        {
+            if (!isMarked)
+            {
+                spawnTo = Instantiate(marker, markerPoint);
+
+                spawnTo.transform.parent = transform;
+                isMarked = true;
+            }
+        }
+        else if (isMarked)
+        {
+            Destroy(spawnTo);
+            isMarked = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,9 +62,11 @@ public class SmallSubScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             hp -= collision.gameObject.GetComponent<WeaponScript>().damage;
+            GameManager.instance.score += value;
         }
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.instance.playerHealth -= 400;
             Destroy(gameObject);
         }
     }
@@ -52,8 +75,8 @@ public class SmallSubScript : MonoBehaviour
     {
         canShoot = false;
 
-//        Instantiate(projectile, gunLeft.position, gunLeft.rotation);
-//        Instantiate(projectile, gunRight.position, gunRight.rotation);
+        Instantiate(projectile, gunLeft.position, gunLeft.rotation);
+        Instantiate(projectile, gunRight.position, gunRight.rotation);
 
         yield return new WaitForSeconds(firerate);
 

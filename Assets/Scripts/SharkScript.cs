@@ -11,9 +11,11 @@ public class SharkScript : MonoBehaviour
     public Transform gun;
     public Transform markerPoint;
     public float speed = 25;
+    public float moveSpeed = -25;
     public float firerate = 0.75f;
     public float tailRot = 0.5f;
     public float hp = 100;
+    public int value = 0;
 
     public GameObject player;
     private GameObject spawnTo;
@@ -30,8 +32,7 @@ public class SharkScript : MonoBehaviour
     {
         if (player != null)
         {
-            
-
+            GetComponent<Rigidbody>().velocity = new Vector3(moveSpeed, transform.position.y - player.transform.position.y, transform.position.z - player.transform.position.z) * -2;
         }
     }
 
@@ -53,8 +54,8 @@ public class SharkScript : MonoBehaviour
             if (transform.position.x >= 30 || hp <= 0){
                 Destroy(gameObject);
             }
-            if (transform.position.z >= player.transform.position.z - 5 && transform.position.z <= player.transform.position.z + 5
-                && transform.position.y >= player.transform.position.y - 5 && transform.position.y <= player.transform.position.y + 5)
+            if (transform.position.z >= player.transform.position.z - 2 && transform.position.z <= player.transform.position.z + 2
+                && transform.position.y >= player.transform.position.y - 2 && transform.position.y <= player.transform.position.y + 2)
             {
                 if (!isMarked)
                 {
@@ -77,9 +78,11 @@ public class SharkScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             hp -= collision.gameObject.GetComponent<WeaponScript>().damage;
+            GameManager.instance.score += value;
         }
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.instance.playerHealth -= 200;
             Destroy(gameObject);
         }
     }

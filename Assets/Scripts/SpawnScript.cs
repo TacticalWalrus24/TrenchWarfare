@@ -7,7 +7,6 @@ public class SpawnScript : MonoBehaviour
     public GameObject enemyOne;
     public GameObject enemyTwo;
     public GameObject enemyThree;
-    public Transform spawnPoint;
     public GameObject player;
 
     public float spawnRate = 100;
@@ -38,27 +37,29 @@ public class SpawnScript : MonoBehaviour
         int randY = Random.Range(-15, 15);
         int randZ = Random.Range(-15, 15);
 
-        spawnPoint.position.Set(spawnPoint.position.x, randY, randZ);
-
 
         switch (rand)
         {
             case (0):
-                enemyOne.GetComponent<SharkScript>().player = player;
-                Instantiate(enemyOne, spawnPoint);
+                if (player != null)
+                {
+                    enemyOne.GetComponent<SharkScript>().player = player;
+                }
+                Instantiate(enemyOne, new Vector3(transform.position.x, randY, randZ), transform.rotation);
                 break;
             case (1):
-                Instantiate(enemyTwo, spawnPoint);
-                enemyOne.GetComponent<SmallSubScript>().player = player;
+                if (player != null)
+                {
+                    enemyTwo.GetComponent<SmallSubScript>().player = player;
+                }
+                Instantiate(enemyTwo, new Vector3(transform.position.x, randY, randZ), transform.rotation);
                 break;
             case (2):
-                Instantiate(enemyThree, spawnPoint);
+                Instantiate(enemyThree, new Vector3(transform.position.x, randY, randZ), transform.rotation);
                 break;
             default:
                 break;
         }
-
-        spawnPoint.position.Set(0, 0, 0);
 
         yield return new WaitForSecondsRealtime(spawnRate);
 

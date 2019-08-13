@@ -53,6 +53,22 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    void checkHealth()
+    {
+        if (GameManager.instance.playerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            //GameManager.instance.playerHealth -= collision.gameObject.GetComponent<>
+        }
+    }
+
     IEnumerator Shoot()
     {
         canShoot = false;

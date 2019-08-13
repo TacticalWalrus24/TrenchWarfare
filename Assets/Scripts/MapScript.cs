@@ -9,6 +9,7 @@ public class MapScript : MonoBehaviour
     public GameObject walls;
     public GameObject rotationPoint;
 
+    bool hasTurned = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,18 +24,19 @@ public class MapScript : MonoBehaviour
 
     void movement()
     {
-        transform.position += new Vector3((speed * Time.deltaTime), 0, 0); 
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, 0); 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<GameObject>().CompareTag("Player"))
+        if (other.CompareTag("Player") && !hasTurned)
         {
             if (player.position.z < -29)
             {
                 rotationPoint.transform.position = player.position;
                 walls.transform.SetParent(rotationPoint.transform);
                 rotationPoint.transform.Rotate(0, 30, 0);
+                hasTurned = true;
             }
             else
             {
